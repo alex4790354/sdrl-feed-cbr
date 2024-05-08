@@ -1,2 +1,4 @@
 # sdrl-feed-cbr
-Microservice Demo project
+Scheduled Data Request and Loading. Microservice Demo project.
+
+
