@@ -12,8 +12,8 @@ public interface FeederCbrRepository {
 
     @Select("""
                 SELECT cur.id, cur.name_rus, cur.name_eng, cur.nominal, cur.parent_code, cur.frequency, rate.first_crncy char_code
-                    FROM cbr.currency cur
-                    INNER JOIN cbr.currency_rate rate on cur.id = rate.id;
+                    FROM feed.currency cur
+                    INNER JOIN feed.currency_rate rate on cur.id = rate.id;
             """)
     List<CurrencyDto> getAllCurrencies();
 

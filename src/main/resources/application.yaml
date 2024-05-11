@@ -1,19 +1,38 @@
 server:
-  port: ${SERVER_PORT:8085}
+  port: ${SERVER_PORT:8084}
   shutdown: graceful
+
+management:
+  health:
+    livenessState:
+      enabled: true
+    readinessState:
+      enabled: true
+  endpoint:
+    health:
+      group:
+        readiness:
+          include: diskSpace, readinessState
+      show-details: "ALWAYS"
+      probes:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
 
 spring:
   application:
-    name: sdr-feed-cbr
+    name: SpxFeedCbr
   main:
     banner-mode: off
-    allow-bean-definition-overriding: true
+#    allow-bean-definition-overriding: true
 
   rabbitmq:
-    host: ${RABBIT_HOST:localhost}
+    host: ${RABBIT_HOST:10.219.160.21}
     port: ${RABBIT_PORT:5672}
-    username: ${RABBIT_USERNAME:guest}
-    password: ${RABBIT_PASSWORD:guest}
+    username: ${RABBIT_USERNAME:admin}
+    password: ${RABBIT_PASSWORD}
 
     cbr:
       exchange: ${RABBIT_FEED_CBR_EXCHANGE:spx-feed-cbr-currency-exchange}
@@ -21,12 +40,18 @@ spring:
       exchange: ${RABBIT_FEED_CBR_RATES_EXCHANGE:spx-feed-cbr-currency-rate-exchange}
     metal:
       exchange: ${RABBIT_FEED_METAL_EXCHANGE:spx-feed-cbr-metal-rate-exchange}
+    ruonia:
+      exchange: ${RABBIT_FEED_RUONIA_EXCHANGE:spx-feed-cbr-ruonia-exchange}
+    ruoniasv:
+      exchange: ${RABBIT_FEED_RUONIASV_EXCHANGE:spx-feed-cbr-ruoniasv-exchange}
+    keyrate:
+      exchange: ${RABBIT_FEED_KEYRATE_EXCHANGE:spx-feed-cbr-keyrate-exchange}
 
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://${HDB_HOST:localhost}:${HDB_PORT:5430}/${HDB_DATABASE:cbr}
-    username: ${HDB_USER:usr}
-    password: ${HDB_PASSWORD:pwd}
+    url: jdbc:postgresql://${HDB_HOST:localhost}:${HDB_PORT:5432}/${HDB_DATABASE:spimex_db}
+    username: ${HDB_USER:spx_cbr_user}
+    password: ${HDB_PASSWORD}
     hikari:
       maximumPoolSize: ${DB_MAX_CONNECTIONS:3}
 
@@ -61,18 +86,28 @@ schedulers:
   currency:
     enable: true
     permanent-jobs-group-name: CBR
-    show-time-job-cron: ${CBR_CURRENCY_JOB_CRON:0 0 12 * * ?}
-#    show-time-job-cron: ${CBR_CURRENCY_JOB_CRON:*/20 * * * * ?}    # Just for testing. TODO: can be deleted
+    show-time-job-cron: ${CBR_CURRENCY_JOB_CRON:0 0 15 ? * * *}
+#    show-time-job-cron: ${CBR_CURRENCY_JOB_CRON:*/15 * * * * ?}    # Just for testing, if need it.
   rates:
     enable: true
     permanent-jobs-group-name: rates
     show-time-job-cron: ${CBR_CURRENCY_RATES_JOB_CRON:0 10 12 * * ?}
-#   show-time-job-cron: ${CBR_CURRENCY_RATES_JOB_CRON:*/15 * * ? * * *}
   metal:
     enable: true
     permanent-jobs-group-name: metal
     show-time-job-cron: ${CBR_METAL_RATES_JOB_CRON:0 20 12 * * ?}
-#    show-time-job-cron: ${CBR_KEY_RATE_JOB_CRON:*/15 * * ? * * *}
+  ruonia:
+    enable: true
+    permanent-jobs-group-name: ruonia
+    show-time-job-cron: ${CBR_RUONIA_JOB_CRON:0 30 12 * * ?}
+  ruoniasv:
+    enable: true
+    permanent-jobs-group-name: ruoniasv
+    show-time-job-cron: ${CBR_RUONIASV_JOB_CRON:0 40 12 * * ?}
+  keyrate:
+    enable: true
+    permanent-jobs-group-name: keyrate
+    show-time-job-cron: ${CBR_KEY_RATE_JOB_CRON:0 50 12 * * ?}
 
 mybatis:
   configuration:
@@ -80,6 +115,10 @@ mybatis:
 
 spx-feed-cbr:
   var:
-    hist-cur-rates-start-date: 12/31/2022
-    hist-metal-rates-start-date: 12/31/2022
+    hist-cur-rates-start-date: 12/01/2010
+    hist-metal-rates-start-date: 01/07/2001
+    hist-ruonia-start-date: 2010-01-01
+    hist-key-rate-start-date: 2010-01-01
     metal-start-day-from-today: 7
+    ruonia-start-day-from-today: 7
+    ruoniasv-start-day-from-today: 7

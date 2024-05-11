@@ -7,7 +7,6 @@ import com.github.alex4790354.general.dtoxml.valcursResponse.ValCurs;
 
 public interface FeedCbrService {
 
-    //generated.daily.Valuta getCbr(int frequencyIndex);
     Valuta getCurrenciesList(int frequencyIndex);
 
     ValCurs getCurrencyRates(String requestDateAsString);

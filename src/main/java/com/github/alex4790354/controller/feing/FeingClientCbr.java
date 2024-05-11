@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 /**
- * Fein client interface for remote call for downloading data from SRBI.
+ * Интерфейс фейн клиента удаленного вызова для выгрузки данных из СРБИ.
  * <a href="https://www.cbr.ru/currency_base/daily/">Official exchange rates for a given date, set daily</a>
  * <a href="https://www.cbr.ru/development/SXML/">Doc: Retrieving data using XML</a>
  * *
@@ -20,13 +20,14 @@ import org.springframework.web.bind.annotation.RequestParam;
  * <a href="https://www.cbr.ru/scripts/XML_daily.asp?date_req=20/11/2023">Daily exchange rates example</a>
  * <a href="https://www.cbr.ru/scripts/XML_dynamic.asp?date_req1=01/01/2023&date_req2=14/11/2023&VAL_NM_RQ=R01235">Historical exchange rates example</a>
  *
- * @author Alex4790354
+ * @author Alexander Vasilev
  */
 @FeignClient(name = "FeedCbr", url = "${feign.url-client}", configuration = FeignConfig.class)
 public interface FeingClientCbr {
 
-
     /**                         Daily currencies list upload
+     * *
+     *  - Once a day
      *  - daily in 15:00
      *  - from: <a href="https://www.cbr.ru/scripts/XML_val.asp?d=0">Daily currencies list (xml)</a>
      *  - with repeat until success
@@ -43,6 +44,7 @@ public interface FeingClientCbr {
 
     /**                          Daily currencies RATE list upload:
      * *
+     *  - Once a day
      *  - daily in 15:30
      *  - from: <a href="https://www.cbr.ru/scripts/XML_daily.asp?date_req=02/03/2002">Daily exchange rates example</a>
      *  - with repeat until success
@@ -63,13 +65,13 @@ public interface FeingClientCbr {
      *  - Example: <a href="https://www.cbr.ru/scripts/XML_dynamic.asp?date_req1=01/01/2023&date_req2=21/11/2023&VAL_NM_RQ=R01235">Historical exchange rates example</a>
      *  - dateAsString in dd/MM/yyyy format.
      *
-     *  @return Return generated.Valuta with currencies rate list (Items) in big given dates range.
+     * @return Return generated.Valuta with currencies rate list (Items) in big given dates range.
      */
     @GetMapping(value="/scripts/XML_dynamic.asp")
     @Headers("Content-Type: application/xml")
     ValCursHist feinGetHistoricalRates(@RequestParam(value = "date_req1") String dateStart,
-                                       @RequestParam(value = "date_req2") String dateEnd,
-                                       @RequestParam(value = "VAL_NM_RQ") String valutaId);
+                                                                    @RequestParam(value = "date_req2") String dateEnd,
+                                                                    @RequestParam(value = "VAL_NM_RQ") String valutaId);
 
 
     /**                             Metals rates loading in given dates range

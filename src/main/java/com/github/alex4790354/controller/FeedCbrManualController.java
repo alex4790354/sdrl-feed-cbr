@@ -42,6 +42,7 @@ public class FeedCbrManualController {
     */
     @GetMapping(value = "/XML_val.asp", params = {"d"})
     @Headers("Content-Type: application/xml")
+    //public ResponseEntity<generated.daily.Valuta> getCbrRequest(@RequestParam(value = "d") int frequencyIndex) {
     public ResponseEntity<Valuta> getCbrRequest(@RequestParam(value = "d") int frequencyIndex) {
         return ResponseEntity.ok(service.getCurrenciesList(frequencyIndex));
     }
@@ -74,7 +75,7 @@ public class FeedCbrManualController {
     }
 
 
-    /**                         metalRate (for Today date)
+    /**                         metalRate (Today date)
      * *
      *  Request example: <a href="http://localhost:8084/scripts/metalRate">This call</a> will call
      **       ==>>       <a href="http://www.cbr.ru/scripts/xml_metall.asp?date_req1=28/11/2023&date_req2=28/11/2023">in CBR</a>*/
@@ -94,7 +95,6 @@ public class FeedCbrManualController {
     public ResponseEntity<MetalRateXml> getMetalsRateByDate(@RequestParam(value = "date_req") String requestDateAsString) {
         return ResponseEntity.ok(service.getMetalRates(requestDateAsString, requestDateAsString));
     }
-
 
     /**                         metalRates Initial Load
      * *

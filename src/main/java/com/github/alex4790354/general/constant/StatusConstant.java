@@ -8,7 +8,7 @@ import lombok.Getter;
 public enum StatusConstant {
 
     SUCCESS("SUCCESS"),
-    ACCEPTED_FOR_PROCESSING("Процесс первоначальной загрузки данных запущен... Пожалуйста, проверьте обновление данных через 2-4 минуты.");
+    ACCEPTED_FOR_PROCESSING("The initial data download process has started... Please check the data update in 1-2 minutes.");
 
     private final String status;
 

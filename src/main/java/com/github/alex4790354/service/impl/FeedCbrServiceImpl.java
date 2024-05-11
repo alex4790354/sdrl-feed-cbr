@@ -28,7 +28,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -44,6 +43,12 @@ public class FeedCbrServiceImpl implements FeedCbrService {
 
     @Value("${spx-feed-cbr.var.hist-metal-rates-start-date}")
     private String histMetalRatesStartDate;
+
+    @Value("${spx-feed-cbr.var.hist-ruonia-start-date}")
+    private String histRuoniaStartDate;
+
+    @Value("${spx-feed-cbr.var.hist-key-rate-start-date}")
+    private String histKeyRateStartDate;
 
     @Value("${spx-feed-cbr.var.metal-start-day-from-today}")
     private int metalStartDayFromToday;
