@@ -1,6 +1,5 @@
 package com.github.alex4790354.general.configuration.feignconfig;
 
-
 import com.github.alex4790354.general.configuration.exception.CbrException;
 import feign.Retryer;
 import lombok.extern.slf4j.Slf4j;
@@ -11,14 +10,12 @@ import feign.codec.Decoder;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.ResponseEntity;
 import java.io.*;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
+
 
 @Slf4j
 @Configuration

@@ -11,13 +11,7 @@ public enum IdentityConstant {
 
     JOB_CURRENCY_RATES_IDENTITY("RatesLoadJob"),
 
-    JOB_METAL_RATES_IDENTITY("MetalLoadJob"),
-
-    JOB_RUONIA_IDENTITY("RuoniaLoadJob"),
-
-    JOB_RUONIASV_IDENTITY("RuoniaSVLoadJob"),
-
-    JOB_KEY_RATE_IDENTITY("KeyRateLoadJob");
+    JOB_METAL_RATES_IDENTITY("MetalLoadJob");
 
     private final String identity;
 

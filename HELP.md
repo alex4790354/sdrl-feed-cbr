@@ -1,17 +1,35 @@
 # Read Me First
-The following was discovered as part of building this project:
 
-* The original package name 'com.github.alex4790354.sdrl-feed-cbr' is invalid and this project uses 'com.github.alex4790354.sdrlfeedcbr' instead.
+Micro-service for loading data from the RF Central Bank:
+   - sdrl-feed-cbr: from RFCB into the RabbitMQ queue
+   - sdrl-receiver-currency: from RabbitMQ queue into DB.
+
 
 # Getting Started
+1) Install Docker
+2) Add containers from 'docker-compose.yml' (java-postgres-feed && rabbitmq)
+3) Start application
+4) Use 'SDRL Collection.postman_collection.json' in Postman or just run all or any URLs from list: 
+    - http://localhost:8084/scripts/XML_val.asp?d=0
+    - http://localhost:8084/scripts/XML_daily.asp?date_req=17/12/2022
+    - http://localhost:8084/scripts/currency-rate/initial-load
+    - http://localhost:8084/scripts/metalRate
+    - http://localhost:8084/scripts/metalByDate?date_req=17/01/2023
+    - http://localhost:8084/scripts/metal-rate/initial-load
 
-### Reference Documentation
-For further reference, please consider the following sections:
+5) Check: 
+   - project data in DB: jdbc:postgresql://localhost:5431/feed         usr/pwd
+   - result in RabitMQ: http://localhost:15672/  (guest/guest) 
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/3.2.5/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/3.2.5/maven-plugin/reference/html/#build-image)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/3.2.5/reference/htmlsingle/index.html#web)
+### Reference sources: 
+
+Source service urls:
+- https://www.cbr.ru/scripts/XML_val.asp?d=0
+- https://www.cbr.ru/scripts/XML_daily.asp?date_req=27/04/2023
+- https://www.cbr.ru/scripts/XML_dynamic.asp?date_req1=01/01/2023&date_req2=31/12/2023&VAL_NM_RQ=R01235
+- http://www.cbr.ru/scripts/xml_metall.asp?date_req1=17/01/2023&date_req2=17/01/2023
+- http://www.cbr.ru/scripts/xml_metall.asp?date_req1=17/01/2023&date_req2=17/01/2023
+
 
 ### Guides
 The following guides illustrate how to use some features concretely:

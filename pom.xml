@@ -3,36 +3,31 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.1.11</version>
+		<relativePath/>
+	</parent>
+
 	<groupId>com.github.alex4790354</groupId>
 	<artifactId>spx-feed-cbr1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-
 	<name>spx-feed-cbr</name>
-	<description>spx-feed-cbr Spring Boot project</description>
+	<description>SDRL Demo project</description>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.5</version>
-		<relativePath/>
-	</parent>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<properties><project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>17</java.version>
-		<springdoc-openapi.version>2.2.0</springdoc-openapi.version>
-		<maven-pmd-plugin.version>3.21.0</maven-pmd-plugin.version>
-		<pmd-java.version>6.55.0</pmd-java.version>
+		<java.version>21</java.version>
+		<maven-pmd-plugin.version>3.22.0</maven-pmd-plugin.version>
+		<pmd-java.version>7.1.0</pmd-java.version>
 		<maven-enforcer-plugin.version>3.4.1</maven-enforcer-plugin.version>
-		<spring-cloud-dependencies.version>2022.0.4</spring-cloud-dependencies.version>
-		<com.rabbitmq.version>5.16.0</com.rabbitmq.version>
-		<logstash-logback-encoder.version>7.4</logstash-logback-encoder.version>
-		<spring-retry.version>2.0.4</spring-retry.version>
-		<org.mybatis.spring.boot.version>3.0.0</org.mybatis.spring.boot.version>
+		<spring-cloud-dependencies.version>2022.0.5</spring-cloud-dependencies.version>
+		<mybatis-spring-boot-starter.version>3.0.3</mybatis-spring-boot-starter.version>
 		<modelmapper.version>3.2.0</modelmapper.version>
 		<simple-xml.version>2.7.1</simple-xml.version>
+		<spring-boot-starter-amqp.version>3.2.5</spring-boot-starter-amqp.version>
 	</properties>
 
 	<dependencyManagement>
@@ -50,15 +45,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>${springdoc-openapi.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -87,6 +73,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-amqp</artifactId>
+			<version>${spring-boot-starter-amqp.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.liquibase</groupId>
@@ -95,7 +82,7 @@
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>${org.mybatis.spring.boot.version}</version>
+			<version>${mybatis-spring-boot-starter.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -138,7 +125,7 @@
 					<failOnViolation>true</failOnViolation>
 					<!-- printFailingErrors is pretty useful -->
 					<printFailingErrors>true</printFailingErrors>
-					<targetJdk>17</targetJdk>
+					<targetJdk>21</targetJdk>
 				</configuration>
 				<executions>
 					<execution>

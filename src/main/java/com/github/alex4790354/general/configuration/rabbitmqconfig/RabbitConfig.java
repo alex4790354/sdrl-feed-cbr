@@ -22,15 +22,6 @@ public class RabbitConfig {
     @Value("${spring.rabbitmq.metal.exchange}")
     private String cbrMetalExchange;
 
-    @Value("${spring.rabbitmq.ruonia.exchange}")
-    private String cbrRuoniaExchange;
-
-    @Value("${spring.rabbitmq.ruoniasv.exchange}")
-    private String cbrRuoniaSvExchange;
-
-    @Value("${spring.rabbitmq.keyrate.exchange}")
-    private String cbrKeyRateExchange;
-
     @Bean
     public FanoutExchange spxFeedCbrCurrenciesExchange() {
         return new FanoutExchange(cbrCurrenciesExchange);
@@ -45,20 +36,4 @@ public class RabbitConfig {
     public FanoutExchange spxFeedCbrMetalExchange() {
         return new FanoutExchange(cbrMetalExchange);
     }
-
-    @Bean
-    public FanoutExchange spxFeedCbrRuoniaExchange() {
-        return new FanoutExchange(cbrRuoniaExchange);
-    }
-
-    @Bean
-    public FanoutExchange spxFeedCbrRuoniaSvExchange() {
-        return new FanoutExchange(cbrRuoniaSvExchange);
-    }
-
-    @Bean
-    public FanoutExchange spxFeedCbrKeyRateExchange() {
-        return new FanoutExchange(cbrKeyRateExchange);
-    }
-
 }

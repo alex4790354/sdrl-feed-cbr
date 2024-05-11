@@ -3,7 +3,7 @@ package com.github.alex4790354.general.constant;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
- /** Констарны для application.yaml:
+ /** Constants:
   *    schedulers:
   *       currency:...
   *       rates:....
@@ -17,13 +17,7 @@ public enum DataNameConstant {
 
     CURRENCY_RATE("rates"),
 
-    METAL_RATE("metal"),
-
-    RUONIA_RATE("ruonia"),
-
-    RUONIASV_RATE("ruoniasv"),
-
-    KEY_RATE_RATE("keyrate");
+    METAL_RATE("metal");
 
     private final String property;
 
