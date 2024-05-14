@@ -166,8 +166,8 @@ public class FeedCbrServiceImpl implements FeedCbrService {
                 MetalRateListDto metalRateListDto = modelMapper.map(metalRateXmlResult, MetalRateListDto.class);
                 rabbitTemplate.convertAndSend(rabbitConfig.getCbrMetalExchange(),
                     StringUtils.EMPTY,
-                    metalRateListDto.getRecords());
-                log.info("List of Metal Rates, with size={} records, successfully loaded into MQ-queue", metalRateListDto.getRecords().size());
+                    metalRateListDto.getMetalRecords());
+                log.info("List of Metal Rates, with size={} records, successfully loaded into MQ-queue", metalRateListDto.getMetalRecords().size());
 
             }
             return metalRateXmlResult;

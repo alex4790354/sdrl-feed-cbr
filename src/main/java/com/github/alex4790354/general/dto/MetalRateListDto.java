@@ -13,16 +13,16 @@ public class MetalRateListDto {
 
 
     @JsonProperty("from_date")
-    private String fromDateAsString; // Format yyyymmdd. Example: "20231128"
+    private String fromDate; // Format yyyymmdd. Example: "20231128"
 
     @JsonProperty("to_date")
-    private String toDateAsString; // Format yyyymmdd. Example: "20231128"
+    private String toDate; // Format yyyymmdd. Example: "20231128"
 
     @JsonProperty("name")
     private String name;
 
     @JsonProperty("Record")
-    private List<MetalRateDto> records;
+    private List<MetalRateDto> metalRecords;
 
 
 }
