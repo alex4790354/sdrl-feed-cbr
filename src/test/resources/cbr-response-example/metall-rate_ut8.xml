@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<Metall FromDate="20240428" ToDate="20240430" name="Precious metals quotations">
+    <Record Date="28.04.2024" Code="1">
+        <Buy>6913,94</Buy>
+        <Sell>6913,94</Sell>
+    </Record>
+    <Record Date="28.04.2024" Code="2">
+        <Buy>81,51</Buy>
+        <Sell>81,51</Sell>
+    </Record>
+    <Record Date="28.04.2024" Code="3">
+        <Buy>2702,9</Buy>
+        <Sell>2702,9</Sell>
+    </Record>
+    <Record Date="28.04.2024" Code="4">
+        <Buy>2862,24</Buy>
+        <Sell>2862,24</Sell>
+    </Record>
+</Metall> 
