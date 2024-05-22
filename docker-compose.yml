@@ -1,7 +1,7 @@
 version: '3'
 services:
   postgres:
-    image: "postgres:13"
+    image: "postgres:16"
     container_name: 'java-postgres-feed'
     ports:
       - "5431:5432"
