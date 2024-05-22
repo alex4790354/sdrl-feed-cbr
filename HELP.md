@@ -19,7 +19,7 @@ Micro-service for loading data from the RF Central Bank:
 
 5) Check: 
    - project data in DB: jdbc:postgresql://localhost:5431/feed         usr/pwd
-   - result in RabitMQ: http://localhost:15672/  (guest/guest) 
+   - result in **RabitMQ**: http://localhost:15672/  (guest/guest) 
 
 ### Reference sources: 
 

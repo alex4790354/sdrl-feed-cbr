@@ -28,6 +28,8 @@
 		<modelmapper.version>3.2.0</modelmapper.version>
 		<simple-xml.version>2.7.1</simple-xml.version>
 		<spring-boot-starter-amqp.version>3.2.5</spring-boot-starter-amqp.version>
+		<junit-jupiter.version>5.9.3</junit-jupiter.version>
+		<gson.version>2.10.1</gson.version>
 	</properties>
 
 	<dependencyManagement>
@@ -105,19 +107,19 @@
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
-			<version>5.9.3</version>
+			<version>${junit-jupiter.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
-			<version>5.9.3</version>
+			<version>${junit-jupiter.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
-			<version>2.10.1</version>
+			<version>${gson.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
