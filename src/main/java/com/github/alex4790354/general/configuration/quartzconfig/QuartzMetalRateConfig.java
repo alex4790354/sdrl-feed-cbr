@@ -1,7 +1,10 @@
 package com.github.alex4790354.general.configuration.quartzconfig;
 
+/**
+ Quartz schedulers version. Uncomment if need it.
+ */
 
-import com.github.alex4790354.general.constant.DataNameConstant;
+/*import com.github.alex4790354.general.constant.DataNameConstant;
 import com.github.alex4790354.general.constant.IdentityConstant;
 import com.github.alex4790354.service.quartzJob.MetalRateLoadJob;
 import lombok.RequiredArgsConstructor;
@@ -11,10 +14,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@RequiredArgsConstructor
+@RequiredArgsConstructor*/
 public class QuartzMetalRateConfig {
 
-    private final SchedulerProperties schedulerProperties;
+    /*private final SchedulerProperties schedulerProperties;
 
     @Bean
     public JobDetail createJobDetailMatalRate() {
@@ -35,6 +38,6 @@ public class QuartzMetalRateConfig {
                         schedulerProperties.getSchedulers().get(DataNameConstant.METAL_RATE.getProperty()).permanentJobsGroupName)
                 .withSchedule(CronScheduleBuilder.cronSchedule(schedulerProperties.getSchedulers().get(DataNameConstant.METAL_RATE.getProperty()).showTimeJobCron))
                 .build();
-    }
+    }*/
 
 }

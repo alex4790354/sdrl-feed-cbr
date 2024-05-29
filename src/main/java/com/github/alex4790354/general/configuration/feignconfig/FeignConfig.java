@@ -4,6 +4,7 @@ import com.github.alex4790354.general.configuration.exception.CbrException;
 import feign.Retryer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Configuration;
 import feign.Response;
 import feign.codec.Decoder;
@@ -19,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Configuration
+@EnableFeignClients(basePackages = "com.github.alex4790354")
 public class FeignConfig {
 
     @Value("${feign.period-seconds}")
