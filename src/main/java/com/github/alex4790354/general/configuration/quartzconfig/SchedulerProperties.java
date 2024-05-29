@@ -1,7 +1,10 @@
 package com.github.alex4790354.general.configuration.quartzconfig;
 
+/**
+ Quartz schedulers version. Uncomment if need it.
+ */
 
-import lombok.Data;
+/*import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -16,14 +19,14 @@ import java.util.Map;
 @Configuration
 @ConfigurationProperties
 @RequiredArgsConstructor
-@EnableConfigurationProperties
+@EnableConfigurationProperties*/
 public class SchedulerProperties {
 
-    private final Map<String, IndexData> schedulers = new HashMap<>();
+    /*private final Map<String, IndexData> schedulers = new HashMap<>();
 
     @Data
     public static class IndexData {
         String permanentJobsGroupName;
         String showTimeJobCron;
-    }
+    }*/
 }

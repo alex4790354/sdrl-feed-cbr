@@ -1,5 +1,6 @@
 package com.github.alex4790354.service.impl;
 
+import com.github.alex4790354.general.configuration.AppConfig;
 import com.github.alex4790354.general.configuration.exception.CbrException;
 import com.github.alex4790354.general.dto.CurrenciesListDto;
 import com.github.alex4790354.general.dto.CurrencyRateListDto;
@@ -21,7 +22,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.apache.commons.lang3.StringUtils;
 import java.time.LocalDate;
@@ -37,15 +37,7 @@ public class FeedCbrServiceImpl implements FeedCbrService {
     private final FeederCbrRepository feederCbrRepository;
     private final RabbitConfig rabbitConfig;
     private final RabbitTemplate rabbitTemplate;
-
-    @Value("${spx-feed-cbr.var.hist-cur-rates-start-date}")
-    private String histCurRatesStartDate;
-
-    @Value("${spx-feed-cbr.var.hist-metal-rates-start-date}")
-    private String histMetalRatesStartDate;
-
-    @Value("${spx-feed-cbr.var.metal-start-day-from-today}")
-    private int metalStartDayFromToday;
+    private final AppConfig appConfig;
 
     @Override
     public Valuta getCurrenciesList(int frequencyIndex) {
@@ -112,7 +104,7 @@ public class FeedCbrServiceImpl implements FeedCbrService {
                     try {
                         log.info("Going to proceed request for CharCode={}, ID={}.", currencyDto.getCharCode(), currencyDto.getId());
                         valCursHistoricalResult =
-                                feingClientCbr.feinGetHistoricalRates(histCurRatesStartDate,
+                                feingClientCbr.feinGetHistoricalRates(appConfig.getHistCurRatesStartDate(),
                                         vDateEnd,
                                         currencyDto.getId());
                         CurrencyRateListDto currencyRateListDto = new CurrencyRateListDto();
@@ -124,7 +116,7 @@ public class FeedCbrServiceImpl implements FeedCbrService {
                         log.info("List of currency Rates, with size={} records, successfully loaded into MQ-queue", currencyRateListDto.getCurrencyRateList().size());
                     } catch (Exception e) {
                         log.error("Exception in Loop getCurrencyRatesInitialLoad() for request with histCurRatesStartDate = {}, vDateEnd = {}, currencyDto = {}, Exception: "
-                                ,histCurRatesStartDate
+                                ,appConfig.getHistCurRatesStartDate()
                                 ,vDateEnd
                                 ,currencyDto.toString()
                                 ,e);
@@ -140,7 +132,7 @@ public class FeedCbrServiceImpl implements FeedCbrService {
     @Override
     public MetalRateXml getMetalRatesDaily() {
 
-        String vDateReqStart = DateHelper.getTodateDateMinusDaysAsString(DateFormatConstant.CBR_REQUEST.getValue(), metalStartDayFromToday);    // in format "dd/MM/yyyy". Example: 25/11/2023
+        String vDateReqStart = DateHelper.getTodateDateMinusDaysAsString(DateFormatConstant.CBR_REQUEST.getValue(), appConfig.getMetalStartDayFromToday());    // in format "dd/MM/yyyy". Example: 25/11/2023
         String vDateReqEnd = DateHelper.getTodateDateMinusDaysAsString(DateFormatConstant.CBR_REQUEST.getValue(), 0);
         return getMetalRates(vDateReqStart, vDateReqEnd);
 
@@ -182,7 +174,7 @@ public class FeedCbrServiceImpl implements FeedCbrService {
     public void metalRateInitialLoad() {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DateFormatConstant.CBR_REQUEST.getValue());
-        LocalDate startDate = LocalDate.parse(histMetalRatesStartDate, formatter);
+        LocalDate startDate = LocalDate.parse(appConfig.getHistMetalRatesStartDate(), formatter);
         LocalDate currentDate = LocalDate.now();
         LocalDate nextStartDate = startDate;
 

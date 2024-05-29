@@ -11,10 +11,10 @@
 	</parent>
 
 	<groupId>com.github.alex4790354</groupId>
-	<artifactId>spx-feed-cbr1</artifactId>
+	<artifactId>sdrl-feed-cbr</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>spx-feed-cbr</name>
+	<name>sdrl-feed-cbr</name>
 	<description>SDRL Demo project</description>
 
 	<properties><project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -68,6 +68,7 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
+		<!--TODO: delete this-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId >spring-boot-starter-quartz</artifactId>

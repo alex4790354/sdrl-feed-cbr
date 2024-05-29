@@ -1,6 +1,10 @@
 package com.github.alex4790354.general.configuration.quartzconfig;
 
-import com.github.alex4790354.general.constant.DataNameConstant;
+/**
+ Quartz schedulers version. Uncomment if need it.
+ */
+
+/*import com.github.alex4790354.general.constant.DataNameConstant;
 import com.github.alex4790354.general.constant.IdentityConstant;
 import com.github.alex4790354.service.quartzJob.CurrenciesLoadJob;
 import lombok.RequiredArgsConstructor;
@@ -10,10 +14,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@RequiredArgsConstructor
+@RequiredArgsConstructor*/
 public class QuartzCurrencyConfig {
 
-    private final SchedulerProperties schedulerProperties;
+    /*private final SchedulerProperties schedulerProperties;
 
     @Bean
     public JobDetail createJobDetailType() {
@@ -34,5 +38,5 @@ public class QuartzCurrencyConfig {
                         schedulerProperties.getSchedulers().get(DataNameConstant.CURRENCY.getProperty()).permanentJobsGroupName)
                 .withSchedule(CronScheduleBuilder.cronSchedule(schedulerProperties.getSchedulers().get(DataNameConstant.CURRENCY.getProperty()).showTimeJobCron))
                 .build();
-    }
+    }*/
 }

@@ -1,10 +1,10 @@
 package com.github.alex4790354.repository;
 
-
 import com.github.alex4790354.general.dto.CurrencyDto;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 import java.util.List;
+
 
 @Mapper
 @Repository

@@ -1,6 +1,10 @@
 package com.github.alex4790354.service.quartzJob;
 
+/**
+ Quartz schedulers version. Uncomment if need it.
+ */
 
+/*
 import com.github.alex4790354.service.FeedCbrService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,17 +16,17 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-@RequiredArgsConstructor
 @DisallowConcurrentExecution
 @PersistJobDataAfterExecution
-public class MetalRateLoadJob extends QuartzJobBean {
+@RequiredArgsConstructor */
+public class MetalRateLoadJob { //extends QuartzJobBean {
 
-    private final FeedCbrService service;
+    /*private final FeedCbrService service;
 
     @Override
     protected void executeInternal(JobExecutionContext context) {
 
         service.getMetalRatesDaily();
 
-    }
+    }*/
 }
