@@ -1,4 +1,0 @@
-databaseChangeLog:
-  - includeAll:
-      path: spx_feed_cbr_v1/
-      relativeToChangelogFile: true
