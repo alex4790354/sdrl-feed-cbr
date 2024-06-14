@@ -1,0 +1,92 @@
+server:
+  port: ${SERVER_PORT:8084}
+  shutdown: graceful
+
+spring:
+  application:
+    name: SpxFeedCbr
+  main:
+    allow-bean-definition-overriding: true
+
+  rabbitmq:
+    host: ${RABBIT_HOST:localhost}
+    port: ${RABBIT_PORT:5672}
+    username: ${RABBIT_USERNAME:guest}
+    password: ${RABBIT_PASSWORD:guest}
+
+    cbr:
+      exchange: ${RABBIT_FEED_CBR_EXCHANGE:sdrl-feed-cbr-currency-exchange}
+    rates:
+      exchange: ${RABBIT_FEED_CBR_RATES_EXCHANGE:sdrl-feed-cbr-currency-rate-exchange}
+    metal:
+      exchange: ${RABBIT_FEED_METAL_EXCHANGE:sdrl-feed-cbr-metal-rate-exchange}
+
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+    contexts: base
+    liquibase-schema: feed
+
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://${HDB_HOST:localhost}:${HDB_PORT:5431}/${HDB_DATABASE:feed}
+    username: ${HDB_USER:usr}
+    password: ${HDB_PASSWORD:pwd}
+    hikari:
+      maximumPoolSize: ${DB_MAX_CONNECTIONS:3}
+
+  quartz:
+    job-store-type: memory
+    properties:
+      org:
+        quartz:
+          jobStore:
+            class: org.quartz.simpl.RAMJobStore
+          scheduler:
+            instanceId: AUTO
+            isClustered: true
+            useProperties: true
+            instanceName: spimex-scheduler
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 1
+
+feign:
+  period-seconds: ${CBR_SERVICE_PERIOD_SECONDS:30}
+  maxPeriod-seconds: ${CBR_SERVICE_MAX_PERIOD_SECONDS:35}
+  maxAttempts: ${CBR_SERVICE_MAX_ATTEMPTS:10}
+  url-client: ${CBR_SERVICE_URL:https://www.cbr.ru}
+  httpclient:
+    connection-timeout: 3000
+  retryAfterException:
+    maxAttempts: ${CBR_SERVICE_MAX_ATTEMPTS_EXCEPTION:3}
+    delay: ${CBR_SERVICE_DELAY_EXCEPTION:180000}
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+sdrl-feed-cbr:
+  var:
+    hist-cur-rates-start-date: 12/01/2023
+    hist-metal-rates-start-date: 01/07/2022
+    metal-start-day-from-today: 7
+    currency-time-job-cron: ${CBR_CURRENCY_JOB_CRON:0 0 12 * * ?}
+#   currency-time-job-cron: ${CBR_CURRENCY_JOB_CRON:*/15 * * * * ?}    # Just for testing.
+    rates-time-job-cron: ${CBR_CURRENCY_JOB_CRON:0 10 12 * * ?}
+    metal-time-job-cron: ${CBR_CURRENCY_JOB_CRON:0 20 12 * * ?}
+
+# Quartz schedulers version. Uncomment if need it.
+#schedulers:
+#  currency:
+#    enable: true
+#    permanent-jobs-group-name: CBR
+#    show-time-job-cron: ${CBR_CURRENCY_JOB_CRON:0 0 12 * * ?}
+#  rates:
+#    enable: true
+#    permanent-jobs-group-name: rates
+#    show-time-job-cron: ${CBR_CURRENCY_RATES_JOB_CRON:0 10 12 * * ?}
+#  metal:
+#    enable: true
+#    permanent-jobs-group-name: metal
+#    show-time-job-cron: ${CBR_METAL_RATES_JOB_CRON:0 20 12 * * ?}
