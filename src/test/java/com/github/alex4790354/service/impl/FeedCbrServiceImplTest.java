@@ -4,6 +4,7 @@ import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.alex4790354.controller.feing.FeingClientCbr;
+import com.github.alex4790354.general.configuration.AppConfig;
 import com.github.alex4790354.general.configuration.rabbitmqconfig.RabbitConfig;
 import com.github.alex4790354.general.dto.CurrenciesListDto;
 import com.github.alex4790354.general.dto.CurrencyRateListDto;
@@ -46,9 +47,11 @@ class FeedCbrServiceImplTest {
 
     private FeedCbrServiceImpl service;
 
+    private AppConfig appConfig;
+
     @BeforeEach
     void setUp() {
-        service = new FeedCbrServiceImpl(feingClientCbr, feederCbrRepository, rabbitConfig, rabbitTemplate);
+        service = new FeedCbrServiceImpl(feingClientCbr, feederCbrRepository, rabbitConfig, rabbitTemplate, appConfig);
 
     }
 

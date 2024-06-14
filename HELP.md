@@ -28,7 +28,6 @@ Source service urls:
 - https://www.cbr.ru/scripts/XML_daily.asp?date_req=27/04/2023
 - https://www.cbr.ru/scripts/XML_dynamic.asp?date_req1=01/01/2023&date_req2=31/12/2023&VAL_NM_RQ=R01235
 - http://www.cbr.ru/scripts/xml_metall.asp?date_req1=17/01/2023&date_req2=17/01/2023
-- http://www.cbr.ru/scripts/xml_metall.asp?date_req1=17/01/2023&date_req2=17/01/2023
 
 
 ### Guides

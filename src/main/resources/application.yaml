@@ -68,7 +68,7 @@ mybatis:
 
 sdrl-feed-cbr:
   var:
-    hist-cur-rates-start-date: 12/01/2022
+    hist-cur-rates-start-date: 12/01/2023
     hist-metal-rates-start-date: 01/07/2022
     metal-start-day-from-today: 7
     currency-time-job-cron: ${CBR_CURRENCY_JOB_CRON:0 0 12 * * ?}

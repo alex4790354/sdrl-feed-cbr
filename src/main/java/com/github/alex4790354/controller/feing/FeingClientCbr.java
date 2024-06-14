@@ -70,8 +70,8 @@ public interface FeingClientCbr {
     @GetMapping(value="/scripts/XML_dynamic.asp")
     @Headers("Content-Type: application/xml")
     ValCursHist feinGetHistoricalRates(@RequestParam(value = "date_req1") String dateStart,
-                                                                    @RequestParam(value = "date_req2") String dateEnd,
-                                                                    @RequestParam(value = "VAL_NM_RQ") String valutaId);
+                                       @RequestParam(value = "date_req2") String dateEnd,
+                                       @RequestParam(value = "VAL_NM_RQ") String valutaId);
 
 
     /**                             Metals rates loading in given dates range
